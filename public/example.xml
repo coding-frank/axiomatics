@@ -1,0 +1,68 @@
+<policy xmlns:xacml3="urn:oasis:names:tc:xacml:3.0:core:schema:wd-17" policyid="access-document" rulecombiningalgid="urn:oasis:names:tc:xacml:3.0:rule-combining-algorithm:deny-unless-p
+ermit" version="1">
+	<description>
+		This Policy controls access to documents and makes sure only
+		those managers at Axiomatics with the right level of clearance can view
+		them.
+	</description>
+	<policydefaults>
+		<xpathversion>
+			http://www.w3.org/TR/1999/REC-xpath-1999111
+			6
+		</xpathversion>
+	</policydefaults>
+	<target>
+		<anyof>
+			<allof>
+				<match matchid="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+					<attributevalue datatype="http://www.w3.org/2001/XMLSchema#string">
+						manager
+					</attributevalue>
+					<attributedesignator attributeid="urn:org:apache:tomcat:user-role" category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" datatype="http://www.w3.org/2001/XMLSchema#string" mustbepresent="false">
+					</attributedesignator>
+				</match>
+				<match matchid="urn:oasis:names:tc:xacml:3.0:function:string-equal-ignore-case">
+					<attributevalue datatype="http://www.w3.org/2001/XMLSchema#string">
+						Axiomatics
+					</attributevalue>
+					<attributedesignator attributeid="company" category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" datatype="http://www.w3.org/2001/XMLSchema#string" mustbepresent="false">
+					</attributedesignator>
+				</match>
+				<match matchid="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+					<attributevalue datatype="http://www.w3.org/2001/XMLSchema#string">
+						view
+					</attributevalue>
+					<attributedesignator attributeid="urn:oasis:names:tc:xacml:1.0:action:action-id" category="urn:oasis:names:tc:xacml:3.0:attribute-category:action" datatype="http://www.w3.org/2001/XMLSchema#string" mustbepresent="false">
+					</attributedesignator>
+				</match>
+				<match matchid="urn:oasis:names:tc:xacml:1.0:function:string-equal">
+					<attributevalue datatype="http://www.w3.org/2001/XMLSchema#string">
+						document
+					</attributevalue>
+					<attributedesignator 4 attributeid="urn:oasis:names:tc:xacml:1.0:resource:resource-id" category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" datatype="http://www.w3.org/2001/XMLSchema#string" mustbepresent="false">
+					</attributedesignator>
+				</match>
+			</allof>
+		</anyof>
+	</target>
+	<rule effect="Permit" ruleid="permit-if-clearance-ok">
+		<description>
+			grant if the subject clearance is greater than the document
+			classification
+		</description>
+		<target>
+			<condition>
+				<apply functionid="urn:oasis:names:tc:xacml:1.0:function:string-greater-than-or-equal">
+					<apply functionid="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+						<attributedesignator attributeid="urn:org:apache:tomcat:user-attr:clearance" category="urn:oasis:names:tc:xacml:1.0:subject-category:access-subject" datatype="http://www.w3.org/2001/XMLSchema#string" mustbepresent="false">
+						</attributedesignator>
+					</apply>
+					<apply functionid="urn:oasis:names:tc:xacml:1.0:function:string-one-and-only">
+						<attributedesignator attributeid="classification" category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" datatype="http://www.w3.org/2001/XMLSchema#string" mustbepresent="false">
+						</attributedesignator>
+					</apply>
+				</apply>
+			</condition>
+		</target>
+	</rule>
+</policy>

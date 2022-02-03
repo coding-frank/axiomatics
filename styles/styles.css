@@ -1,0 +1,220 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+	list-style: none;
+	text-decoration: none;
+	margin: 0;
+	padding: 0;
+}
+
+:root {
+	font-size: 1rem;
+}
+
+html {
+	height: 100%;
+	-webkit-font-smoothing: antialiased;
+	-webkit-text-size-adjust: 100%;
+	-webkit-tap-highlight-color: transparent;
+}
+
+html,
+body,
+#react-root {
+	height: 100%;
+}
+
+#react-root {
+	z-index: 0;
+}
+
+body {
+	margin: 1.5rem auto 1rem auto;
+	width: 90%;
+	max-width: 800px;
+	font-family: Arial;
+	font-size: 1rem;
+	font-weight: normal;
+	line-height: 2;
+	color: black;
+	text-align: left;
+	background-color: white;
+	direction: ltr;
+}
+
+section {
+	margin-top: 2rem;
+}
+
+/* Paragraphs */
+
+h1 {
+	font-size: 1.8rem;
+	margin-bottom: 2rem;
+	line-height: 1.2;
+	letter-spacing: -1px;
+}
+
+h2 {
+	font-size: 1.3rem;
+}
+
+p {
+	margin-top: 0;
+	margin-bottom: 0.8rem;
+}
+
+/* Form elements */
+
+input,
+select,
+.btn {
+	font-family: Arial;
+	font-size: 1.4rem;
+	font-weight: normal;
+	border-width: 1px;
+	border-style: solid;
+	border-radius: 5px;
+}
+
+input,
+select {
+	color: #999;
+	border-color: #999;
+	margin-right: 10px;
+	padding: 5px 10px;
+}
+
+/* Input Search */
+.search {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
+.search input {
+	width: 100%;
+}
+
+/* Buttons */
+
+button:disabled {
+	background-color: #ccc;
+	border-color: #ccc;
+}
+
+.btn {
+	padding: 5px 20px;
+}
+
+.btn:hover,
+.btn:focus {
+	opacity: 0.6;
+	cursor: pointer;
+}
+
+.btn--blue {
+	color: white;
+	background-color: blue;
+	border-color: blue;
+}
+
+/* Alert */
+
+.alert {
+	line-height: 50px;
+	color: black;
+}
+
+.alert--red {
+	color: red;
+}
+
+.alert--green {
+	color: green;
+}
+
+/* Badges */
+.badge {
+	display: inline;
+	margin-right: 10px;
+	background: greenyellow;
+	padding: 3px 6px;
+	font-size: 0.9rem;
+	border-radius: 8px;
+}
+
+/* Items */
+
+.item {
+	display: flex;
+	flex-direction: row;
+	width: 100%;
+	justify-content: space-between;
+	align-items: flex-start;
+	border-bottom: 1px solid #999;
+	padding: 10px;
+}
+
+.item--relation {
+	border-bottom: 0 none;
+	color: #666;
+	align-items: center !important;
+}
+
+.item--name,
+.item--description,
+.item--relations {
+	display: block;
+	margin-right: 10px;
+}
+
+.item--name {
+	font-weight: 700;
+}
+
+.item--left,
+.item--actions,
+.item--type {
+	display: flex;
+}
+
+.item--left {
+	flex-direction: column;
+	width: 250px;
+}
+
+.item--type {
+	width: 80px;
+}
+
+.item--actions {
+	text-align: right;
+}
+
+.item--actions .btn:not(:last-child) {
+	margin-right: 10px;
+}
+
+/* Rows, Cols */
+.row {
+	display: block;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+
+.row .btn {
+	margin-right: 10px;
+}
+
+/* Borders */
+.row--buttons {
+	margin-top: 2.5rem;
+	padding-top: 1rem;
+}
+
+.col {
+	display: inline;
+	margin-right: 20px;
+}

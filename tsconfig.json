@@ -1,0 +1,30 @@
+{
+	"compilerOptions": {
+		"baseUrl": ".",
+		"target": "es5",
+		"lib": ["dom", "dom.iterable", "esnext", "esnext.bigint"],
+		"allowJs": true,
+		"skipLibCheck": true,
+		"declaration": true,
+		"declarationDir": "./@types",
+		"strict": false,
+		"strictNullChecks": false,
+		"strictFunctionTypes": true,
+		"forceConsistentCasingInFileNames": true,
+		"noEmit": false,
+		"noEmitOnError": false,
+		"noImplicitAny": false,
+		"esModuleInterop": true,
+		"module": "esnext",
+		"moduleResolution": "node",
+		"resolveJsonModule": true,
+		"isolatedModules": true,
+		"jsx": "preserve",
+		"sourceMap": true,
+		"types": ["node"],
+		"outDir": "./build",
+		"allowSyntheticDefaultImports": true
+	},
+	"include": ["next-env.d.ts", "@types", "**/*.ts", "**/*.tsx"],
+	"exclude": ["node_modules"]
+}
