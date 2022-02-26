@@ -47,21 +47,6 @@ section {
 	margin-top: 2rem;
 }
 
-/* Footer */
-
-footer {
-	position: fixed;
-	left: 0;
-	bottom: 0;
-	width: 100%;
-	padding: 5px 20px;
-	border-top: 1px solid black;
-	height: 40px;
-	font-size: 0.8rem;
-	color: #888;
-	overflow: hidden;
-}
-
 /* Paragraphs */
 
 h1 {
@@ -78,24 +63,6 @@ h2 {
 p {
 	margin-top: 0;
 	margin-bottom: 0.8rem;
-}
-
-p.subline {
-	font-size: 0.8rem;
-	color: #666;
-}
-
-/* Links */
-
-a {
-	color: blue;
-	text-decoration: none;
-	font-weight: bold;
-}
-
-a:hover {
-	color: blue;
-	text-decoration: none;
 }
 
 /* Form elements */
@@ -119,17 +86,6 @@ select {
 	padding: 5px 10px;
 }
 
-label {
-	font-weight: 600;
-	font-size: 0.9rem;
-	display: block;
-}
-
-label.inline {
-	display: inline;
-	font-weight: 400;
-}
-
 /* Input Search */
 .search {
 	display: flex;
@@ -148,6 +104,10 @@ button:disabled {
 	border-color: #ccc;
 }
 
+.btn {
+	padding: 5px 20px;
+}
+
 .btn:hover,
 .btn:focus {
 	opacity: 0.6;
@@ -158,33 +118,6 @@ button:disabled {
 	color: white;
 	background-color: blue;
 	border-color: blue;
-}
-
-.btn--red {
-	color: white;
-	background-color: red;
-	border-color: red;
-}
-
-.btn--green {
-	color: white;
-	background-color: green;
-	border-color: green;
-}
-
-.btn--grey {
-	color: #222;
-	background-color: #ccc;
-	border-color: #ccc;
-}
-
-.btn--normal {
-	padding: 5px 20px;
-}
-
-.btn--small {
-	font-size: 0.9rem;
-	padding: 3px 10px;
 }
 
 /* Alert */

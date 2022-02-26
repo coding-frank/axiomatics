@@ -10,7 +10,7 @@ function Main() {
 		event.preventDefault();
 
 		// check for existing file name
-		if (!selectedFile || selectedFile.length === 0) return;
+		if (!selectedFile) return;
 
 		inportFile();
 	};
@@ -53,16 +53,21 @@ function Main() {
 			<h1>XML Upload Demo</h1>
 
 			{!data && (
-				<div className='search'>
-					<form>
+				<form>
+					<div className='search'>
 						<input type='file' name='example' accept='.xml' onChange={handleChange} />
-						<button type='button' onClick={submitForm} disabled={!selectedFile || error ? true : false}>
+						<button
+							type='button'
+							className='btn btn--blue'
+							onClick={submitForm}
+							disabled={!selectedFile || error ? true : false}
+						>
 							Upload
 						</button>
 
 						{error && <div className='error'>{error}</div>}
-					</form>
-				</div>
+					</div>
+				</form>
 			)}
 
 			{data && <section>show</section>}
