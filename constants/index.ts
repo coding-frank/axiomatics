@@ -1,1 +1,0 @@
-export const TYPES = ["desk", "computer", "keyboard", "server", "human"];

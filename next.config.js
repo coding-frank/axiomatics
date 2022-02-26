@@ -19,10 +19,6 @@ const nextConfig = {
 const globalConfig = {
 	serverRuntimeConfig: {
 		PROJECT_ROOT: __dirname
-	},
-	publicRuntimeConfig: {
-		// constants
-		COLORS: "test",
 	}
 };
 

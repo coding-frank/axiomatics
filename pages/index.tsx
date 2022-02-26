@@ -1,88 +1,71 @@
 import { useState } from "react";
-import { useAppSelector } from "../hooks";
-import { useRouter } from "next/router";
-import Item from "components/elements/Item";
-import Button from "components/elements/Button";
-import Input from "components/elements/Input";
+import XMLParser from "xml-parser-xo";
 
 function Main() {
-	const router = useRouter();
-	const storage = useAppSelector((state) => state.storage);
+	const [selectedFile, setSelectedFile] = useState<Blob | null>(null);
+	const [data, setData] = useState(null);
+	const [error, setError] = useState<string | null>(null);
 
-	const [input, setInput] = useState("");
-	const [suggestions, setSuggestions] = useState([]);
+	const submitForm = (event) => {
+		event.preventDefault();
 
-	const onChange = (e) => {
-		// update search
-		setInput(e.target.value);
+		// check for existing file name
+		if (!selectedFile || selectedFile.length === 0) return;
 
-		// get suggestions list
-		if (e.target.value.length > 2 && storage) {
-			const inputLowered = e.target.value.toLowerCase();
-			const results = storage.filter(
-				(items) =>
-					items.name.toLowerCase().includes(inputLowered) || items.description.toLowerCase().includes(inputLowered)
-			);
-			setSuggestions(results);
-		}
+		inportFile();
 	};
 
-	const ShowSuggestionList = () => {
-		// empty storage
-		if (!storage || storage.length === 0) return <div>Storage is empty.</div>;
+	const inportFile = () => {
+		// init FileReader to import file data
+		const reader = new FileReader();
 
-		// show complete storage if user input is empty
-		if (storage && input.length === 0) {
-			return (
-				<div>
-					{Object.values(storage).map((item, index) => (
-						<Item key={`item-` + index} idx={index} item={item} />
-					))}
-				</div>
-			);
+		const onload = function () {
+			const text: string | ArrayBuffer = reader.result;
+
+			const xmlParsed = XMLParser(text);
+			console.log(xmlParsed);
+
+			// set parsed xml to state
+			setData(xmlParsed);
+		};
+
+		reader.onload = onload;
+		reader.readAsText(selectedFile);
+	};
+
+	const handleChange = (e) => {
+		// check for file
+		if (e.target.files.length === 0) return;
+
+		// check file extension
+		if (e.target.files[0].type !== "text/xml") {
+			setSelectedFile(null);
+			setError("Please upload a XML file.");
+			return;
 		}
 
-		// no suggestions found
-		if (suggestions.length === 0) return <div>No results.</div>;
-
-		// show suggestions
-		return (
-			<div>
-				<p>{suggestions.length} result(s) found:</p>
-
-				{suggestions.map((item, index) => (
-					<Item key={`item-` + index} idx={index} item={item} />
-				))}
-			</div>
-		);
+		setSelectedFile(e.target.files[0]);
+		setError(null);
 	};
 
 	return (
 		<>
-			<h1>Object Management System</h1>
+			<h1>XML Upload Demo</h1>
 
-			<div className='search'>
-				<Input
-					type='text'
-					name='search'
-					placeholder='Search by name or description'
-					value={input}
-					onChange={(e) => onChange(e)}
-				/>
-				<Button color='blue' onClick={() => router.push("/view/-1")} label='Add' />
-			</div>
+			{!data && (
+				<div className='search'>
+					<form>
+						<input type='file' name='example' accept='.xml' onChange={handleChange} />
+						<button type='button' onClick={submitForm} disabled={!selectedFile || error ? true : false}>
+							Upload
+						</button>
 
-			{input.length > 0 && (
-				<p className='subline'>
-					<a href='#' onClick={() => setInput("")}>
-						Clear search
-					</a>
-				</p>
+						{error && <div className='error'>{error}</div>}
+					</form>
+				</div>
 			)}
 
-			<section>
-				<ShowSuggestionList />
-			</section>
+			{data && <section>show</section>}
 		</>
 	);
 }
