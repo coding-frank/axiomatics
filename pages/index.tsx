@@ -1,6 +1,7 @@
 import { useState } from "react";
-import XMLParser from "xml-parser-xo";
 import uuid from "react-uuid";
+import { xml2json } from "../helpers/xml_functions";
+import ShowList from "../components/index/ShowList";
 
 function Main() {
 	const [selectedFile, setSelectedFile] = useState<Blob | null>(null);
@@ -16,37 +17,27 @@ function Main() {
 		inportFile();
 	};
 
-	// crop \r \n \t from text
-	const replaceLineFeeds = (string: string) => {
-		console.log("string: ", string);
-		let newString = string.replace(/\r/g, "");
-		newString = newString.replace(/\n/g, "");
-		newString = newString.replace(/\t/g, "");
-
-		return newString;
-	};
-
 	const inportFile = () => {
 		// init FileReader to import file data
 		const reader = new FileReader();
 
 		const onload = function () {
-			const text: string | ArrayBuffer = reader.result;
+			const xmlString: string | ArrayBuffer = reader.result;
 
-			const xmlParsed = XMLParser(text);
+			// Parse xml string into DOM object
+			const parser = new DOMParser();
+			const xmlDoc = parser.parseFromString(xmlString.toString(), "text/xml");
 
-			// take children from xml file only
-			const children = xmlParsed.children;
+			// Convert XML object into JSON
+			const xmlJson = xml2json(xmlDoc);
 
-			// set parsed xml to state
-			setData(children);
+			setData(xmlJson);
 		};
 
 		reader.onload = onload;
 		reader.readAsText(selectedFile);
 	};
 
-	console.log("data", data);
 	const handleChange = (e) => {
 		// check for file
 		if (e.target.files.length === 0) return;
@@ -62,51 +53,14 @@ function Main() {
 		setError(null);
 	};
 
-	const ShowList = ({ subitems, name }) => {
-		return (
-			<li key={uuid()}>
-				{name}
-				<ul className='tree-list'>
-					{subitems
-						.filter((sub) => sub.content !== "")
-						.map((item) => {
-							if (item.children) {
-								return <ShowList key={uuid()} subitems={item.children} name={item.name} />;
-							}
-
-							if (!item.children) {
-								return <ShowListItem key={uuid()} item={item} />;
-							}
-						})}
-				</ul>
-			</li>
-		);
-	};
-
-	const ShowListItem = ({ item }) => {
-		if (item.type === "Element") return <li>{item.name}</li>;
-		if (item.type === "Text") {
-			const clearedContent = replaceLineFeeds(item.content);
-
-			return clearedContent.length > 0 ? <li>{clearedContent}</li> : null;
-		}
-
-		return null;
-	};
-
 	const ListingComponent = () => {
 		const outputArr = [];
 
-		// loop though data and build output array
-		for (let i = 0; i < data.length; i++) {
-			if (data[0].children) {
-				outputArr.push(<ShowList key={uuid()} subitems={data[0].children} name={data[0].name} />);
-			}
+		Object.entries(data).forEach((entry) => {
+			const [key, value] = entry;
 
-			if (!data[0].children) {
-				outputArr.push(<ShowListItem key={uuid()} item={data[0]} />);
-			}
-		}
+			outputArr.push(<ShowList key={uuid()} subitems={value} name={key} />);
+		});
 
 		return <ul className='tree-list'>{outputArr}</ul>;
 	};
