@@ -116,27 +116,16 @@ button:disabled {
 	border-color: blue;
 }
 
-/* Alert */
-
-.alert {
-	line-height: 50px;
-	color: black;
-}
-
-.alert--red {
-	color: red;
-}
-
-.alert--green {
-	color: green;
-}
-
 /* Items */
 ul.tree-list {
-	list-style: square;
+	list-style: none;
 	margin-left: 1rem;
 }
 
 ul.tree-list li {
-	list-style-type: circle;
+	list-style-type: none;
+}
+
+ul.tree-list li span {
+	font-weight: 600;
 }
