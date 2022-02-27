@@ -43,6 +43,15 @@ body {
 	direction: ltr;
 }
 
+section {
+	margin: 2rem 0;
+}
+
+code {
+	color: #666;
+	font-size: 0.7rem;
+}
+
 /* Paragraphs */
 
 h1 {
@@ -102,6 +111,7 @@ button:disabled {
 
 .btn {
 	padding: 5px 20px;
+	color: white;
 }
 
 .btn:hover,
@@ -111,15 +121,24 @@ button:disabled {
 }
 
 .btn--blue {
-	color: white;
 	background-color: blue;
 	border-color: blue;
+}
+
+.btn--red {
+	background-color: red;
+	border-color: red;
 }
 
 /* Items */
 ul.tree-list {
 	list-style: none;
+	list-style-position: inside;
 	margin-left: 1rem;
+}
+
+ul.tree-list:first-child {
+	margin-left: 0;
 }
 
 ul.tree-list li {
