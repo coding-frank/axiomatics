@@ -39,7 +39,7 @@ ermit" version="1">
 					<attributevalue datatype="http://www.w3.org/2001/XMLSchema#string">
 						document
 					</attributevalue>
-					<attributedesignator 4 attributeid="urn:oasis:names:tc:xacml:1.0:resource:resource-id" category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" datatype="http://www.w3.org/2001/XMLSchema#string" mustbepresent="false">
+					<attributedesignator attributeid="urn:oasis:names:tc:xacml:1.0:resource:resource-id" category="urn:oasis:names:tc:xacml:3.0:attribute-category:resource" datatype="http://www.w3.org/2001/XMLSchema#string" mustbepresent="false">
 					</attributedesignator>
 				</match>
 			</allof>
