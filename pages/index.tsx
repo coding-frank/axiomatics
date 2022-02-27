@@ -53,6 +53,12 @@ function Main() {
 		setError(null);
 	};
 
+	const handleClear = () => {
+		setSelectedFile(null);
+		setData(null);
+		setError(null);
+	};
+
 	const ListingComponent = () => {
 		const outputArr = [];
 
@@ -87,7 +93,18 @@ function Main() {
 				</form>
 			)}
 
-			{data && <ListingComponent />}
+			{data && (
+				<>
+					<button type='button' className='btn btn--red' onClick={handleClear}>
+						Upload new file
+					</button>
+					<section>
+						<code>
+							<ListingComponent />
+						</code>
+					</section>
+				</>
+			)}
 		</>
 	);
 }
