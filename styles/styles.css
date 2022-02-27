@@ -43,10 +43,6 @@ body {
 	direction: ltr;
 }
 
-section {
-	margin-top: 2rem;
-}
-
 /* Paragraphs */
 
 h1 {
@@ -135,86 +131,12 @@ button:disabled {
 	color: green;
 }
 
-/* Badges */
-.badge {
-	display: inline;
-	margin-right: 10px;
-	background: greenyellow;
-	padding: 3px 6px;
-	font-size: 0.9rem;
-	border-radius: 8px;
-}
-
 /* Items */
-
-.item {
-	display: flex;
-	flex-direction: row;
-	width: 100%;
-	justify-content: space-between;
-	align-items: flex-start;
-	border-bottom: 1px solid #999;
-	padding: 10px;
+ul.tree-list {
+	list-style: square;
+	margin-left: 1rem;
 }
 
-.item--relation {
-	border-bottom: 0 none;
-	color: #666;
-	align-items: center !important;
-}
-
-.item--name,
-.item--description,
-.item--relations {
-	display: block;
-	margin-right: 10px;
-}
-
-.item--name {
-	font-weight: 700;
-}
-
-.item--left,
-.item--actions,
-.item--type {
-	display: flex;
-}
-
-.item--left {
-	flex-direction: column;
-	width: 250px;
-}
-
-.item--type {
-	width: 80px;
-}
-
-.item--actions {
-	text-align: right;
-}
-
-.item--actions .btn:not(:last-child) {
-	margin-right: 10px;
-}
-
-/* Rows, Cols */
-.row {
-	display: block;
-	margin-top: 10px;
-	margin-bottom: 20px;
-}
-
-.row .btn {
-	margin-right: 10px;
-}
-
-/* Borders */
-.row--buttons {
-	margin-top: 2.5rem;
-	padding-top: 1rem;
-}
-
-.col {
-	display: inline;
-	margin-right: 20px;
+ul.tree-list li {
+	list-style-type: circle;
 }
