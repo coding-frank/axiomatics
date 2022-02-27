@@ -23,7 +23,7 @@ const ShowList = ({ subitems, name }) => {
 	return (
 		<li key={uuid()}>
 			<span>{name}:</span>
-			{outputSubArr && <ul className='tree-list'>{outputSubArr}</ul>}
+			{outputSubArr.length > 0 && <ul className='tree-list'>{outputSubArr}</ul>}
 		</li>
 	);
 };
