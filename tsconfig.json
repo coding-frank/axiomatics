@@ -21,7 +21,7 @@
 		"isolatedModules": true,
 		"jsx": "preserve",
 		"sourceMap": true,
-		"types": ["node"],
+		"types": ["node", "cypress", "cypress-file-upload"],
 		"outDir": "./build",
 		"allowSyntheticDefaultImports": true
 	},
