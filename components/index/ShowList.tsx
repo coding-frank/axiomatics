@@ -1,8 +1,9 @@
+import { FC } from "react";
 import ShowListItem from "./ShowListItem";
 import uuid from "react-uuid";
 import { replaceLineFeeds } from "../../helpers/string_functions";
 
-const ShowList = ({ subitems, name }) => {
+const ShowList: FC<IList> = ({ subitems, name }): JSX.Element => {
 	const outputSubArr = [];
 
 	if (subitems) {
