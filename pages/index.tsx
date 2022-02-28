@@ -5,7 +5,7 @@ import ShowList from "../components/index/ShowList";
 
 function Main() {
 	const [selectedFile, setSelectedFile] = useState<Blob | null>(null);
-	const [data, setData] = useState(null);
+	const [data, setData] = useState<object | null>(null);
 	const [error, setError] = useState<string | null>(null);
 
 	const submitForm = (event) => {
@@ -43,7 +43,7 @@ function Main() {
 		if (e.target.files.length === 0) return;
 
 		// check file extension
-		if (e.target.files[0].type !== "text/xml") {
+		if (["application/xml", "text/xml"].includes(e.target.files[0].type) === false) {
 			setSelectedFile(null);
 			setError("Please upload a XML file.");
 			return;
@@ -98,7 +98,7 @@ function Main() {
 					<button type='button' className='btn btn--red' onClick={handleClear}>
 						Upload new file
 					</button>
-					<section>
+					<section id='content'>
 						<code>
 							<ListingComponent />
 						</code>
