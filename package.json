@@ -10,9 +10,6 @@
 	"license": "ISC",
 	"scripts": {
 		"prod": "next build",
-		"build": "rm -rf ./build && NODE_ENV=production next build",
-		"start": "next start -p 8080",
-		"dev2": "nodemon server/",
 		"dev": "next dev",
 		"lint": "next lint --fix",
 		"eslint": "eslint --fix",
