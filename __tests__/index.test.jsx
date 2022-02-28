@@ -1,5 +1,5 @@
 import { render, screen } from "@testing-library/react";
-import Main from "./index";
+import Main from "../pages/index";
 
 describe("UI tests", () => {
 	test("if input field and submit button exist", () => {
