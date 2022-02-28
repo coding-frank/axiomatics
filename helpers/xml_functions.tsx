@@ -1,4 +1,4 @@
-export const xml2json = (xml) => {
+export const xml2json = (xml: Document | Element): object | null => {
 	try {
 		let obj = {};
 		if (xml.children.length > 0) {
@@ -24,5 +24,6 @@ export const xml2json = (xml) => {
 		return obj;
 	} catch (e) {
 		console.log(e.message);
+		return null;
 	}
 };
